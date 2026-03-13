@@ -59,7 +59,7 @@ class Particle:
         color_with_alpha = (*self.color, alpha)
 
         pygame.draw.circle(particle_surface, color_with_alpha,
-                          (self.size, self.size), self.size)
+                           (self.size, self.size), self.size)
         screen.blit(particle_surface, (int(self.x - self.size), int(self.y - self.size)))
 
 

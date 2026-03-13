@@ -7,5 +7,5 @@ from .food import Food
 from .logger import setup_logger
 from .particle import ParticleSystem
 
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 __all__ = ["Game", "main", "Snake", "Direction", "Food", "setup_logger", "ParticleSystem"]
