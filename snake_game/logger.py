@@ -24,8 +24,8 @@ def setup_logger(name: str = "snake_game") -> logging.Logger:
     if logger.handlers:
         return logger
 
-    # 创建日志目录
-    log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
+    # 创建日志目录 - 保存在程序运行目录
+    log_dir = os.path.join(os.getcwd(), "logs")
     os.makedirs(log_dir, exist_ok=True)
 
     # 日志文件名包含日期

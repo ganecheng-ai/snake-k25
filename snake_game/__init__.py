@@ -6,5 +6,5 @@ from .snake import Snake, Direction
 from .food import Food
 from .logger import setup_logger
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __all__ = ["Game", "main", "Snake", "Direction", "Food", "setup_logger"]
