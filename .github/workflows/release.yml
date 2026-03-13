@@ -99,26 +99,8 @@ jobs:
         brew install create-dmg || true
         mkdir -p "dist/Snake Game.app/Contents/MacOS"
         cp dist/snake-game "dist/Snake Game.app/Contents/MacOS/"
-        cat > "dist/Snake Game.app/Contents/Info.plist" << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key>
-    <string>snake-game</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.snakegame.app</string>
-    <key>CFBundleName</key>
-    <string>Snake Game</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>10.13</string>
-</dict>
-</plist>
-EOF
+        # 复制 Info.plist
+        cp .github/workflows/assets/Info.plist "dist/Snake Game.app/Contents/"
         # 尝试创建 DMG，如果失败则使用 zip
         if command -v create-dmg &> /dev/null; then
           create-dmg \
@@ -201,35 +183,35 @@ EOF
       id: release_notes
       run: |
         VERSION="${{ steps.get_version.outputs.VERSION }}"
-        # 尝试从 CHANGELOG.md 或 plan.md 读取版本说明
-        NOTES="## 版本 ${VERSION}
-
-### 新增功能
-- 精美的贪吃蛇游戏界面
-- 支持简体中文显示
-- 方向键和 WASD 双键位控制
-- 暂停功能（P键）
-- 最高分记录保存
-- 渐变色蛇身和动画效果
-
-### 系统支持
-- Windows (x64) - .exe 可执行文件
-- Linux (x64) - .tar.gz 压缩包
-- macOS (x64) - .dmg 安装包
-
-### 文件校验
-请查看 checksums.txt 文件验证下载文件的完整性。
-
-### 使用说明
-1. 下载对应系统的压缩包
-2. 解压/安装到本地
-3. 运行 snake-game 可执行文件
-4. 使用方向键或 WASD 控制蛇的移动
-5. 按 P 键暂停游戏，ESC 键退出"
-
-        echo "NOTES<<EOF" >> $GITHUB_OUTPUT
-        echo "$NOTES" >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
+        echo "## 版本 ${VERSION}" > notes.txt
+        echo "" >> notes.txt
+        echo "### 新增功能" >> notes.txt
+        echo "* 精美的贪吃蛇游戏界面" >> notes.txt
+        echo "* 支持简体中文显示" >> notes.txt
+        echo "* 方向键和 WASD 双键位控制" >> notes.txt
+        echo "* 暂停功能（P键）" >> notes.txt
+        echo "* 最高分记录保存" >> notes.txt
+        echo "* 渐变色蛇身和动画效果" >> notes.txt
+        echo "" >> notes.txt
+        echo "### 系统支持" >> notes.txt
+        echo "* Windows (x64) - .exe 可执行文件" >> notes.txt
+        echo "* Linux (x64) - .tar.gz 压缩包" >> notes.txt
+        echo "* macOS (x64) - .dmg 安装包" >> notes.txt
+        echo "" >> notes.txt
+        echo "### 文件校验" >> notes.txt
+        echo "请查看 checksums.txt 文件验证下载文件的完整性。" >> notes.txt
+        echo "" >> notes.txt
+        echo "### 使用说明" >> notes.txt
+        echo "1. 下载对应系统的压缩包" >> notes.txt
+        echo "2. 解压/安装到本地" >> notes.txt
+        echo "3. 运行 snake-game 可执行文件" >> notes.txt
+        echo "4. 使用方向键或 WASD 控制蛇的移动" >> notes.txt
+        echo "5. 按 P 键暂停游戏，ESC 键退出" >> notes.txt
+        {
+          echo 'NOTES<<EOF'
+          cat notes.txt
+          echo 'EOF'
+        } >> "$GITHUB_OUTPUT"
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
