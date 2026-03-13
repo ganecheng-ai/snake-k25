@@ -74,3 +74,4 @@
 ## 版本规划
 - v1.0.0: 基础游戏功能完成，支持 Windows/Linux/macOS
 - v1.0.1: 修复 GitHub Actions workflow 的 YAML 语法错误
+- v1.0.2: 修复 Node.js 20 弃用警告，添加 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 环境变量

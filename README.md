@@ -94,6 +94,10 @@ python main.py
 
 ## 版本历史
 
+### v1.0.2
+- 修复 GitHub Actions Node.js 20 弃用警告
+- 添加 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 环境变量配置
+
 ### v1.0.1
 - 修复 GitHub Actions workflow 的 YAML 语法错误
 - 优化 CI/CD 构建流程
