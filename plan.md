@@ -74,9 +74,15 @@
 11. [x] 发布 v1.0.2 版本（修复 Node.js 20 弃用警告）
 12. [x] 发布 v1.0.3 版本（优化数据文件保存路径）
 13. [x] 发布 v1.0.4 版本（更新 action-gh-release 到 v2）
+14. [ ] 发布 v1.0.5 版本（代码质量优化：修复未使用变量、未使用导入、缩进问题）
 
 ## 版本规划
 - v1.0.0: 基础游戏功能完成，支持 Windows/Linux/macOS
 - v1.0.1: 修复 GitHub Actions workflow 的 YAML 语法错误
 - v1.0.2: 修复 Node.js 20 弃用警告，添加 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 环境变量
 - v1.0.4: 更新 softprops/action-gh-release 到 v2，解决 Node.js 20 弃用警告
+- v1.0.5: 代码质量优化：
+  - 移除 food.py 中未使用的 `glow_color` 变量
+  - 移除 game.py 中未使用的 `sys` 和 `Tuple` 导入
+  - 移除 snake.py 中未使用的 `Optional` 导入
+  - 修复所有 flake8 E128（缩进对齐）问题

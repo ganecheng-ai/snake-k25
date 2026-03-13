@@ -2,9 +2,8 @@
 游戏主类 - 管理游戏状态和主循环
 """
 import pygame
-import sys
-from typing import Optional, Tuple
 import os
+from typing import Optional
 
 from .snake import Snake, Direction
 from .food import Food
@@ -283,20 +282,20 @@ class Game:
         """绘制网格背景"""
         for x in range(0, self.GRID_WIDTH * self.CELL_SIZE, self.CELL_SIZE):
             pygame.draw.line(self.screen, self.GRID_LINE_COLOR,
-                           (x, 0), (x, self.GRID_HEIGHT * self.CELL_SIZE))
+                             (x, 0), (x, self.GRID_HEIGHT * self.CELL_SIZE))
         for y in range(0, self.GRID_HEIGHT * self.CELL_SIZE, self.CELL_SIZE):
             pygame.draw.line(self.screen, self.GRID_LINE_COLOR,
-                           (0, y), (self.GRID_WIDTH * self.CELL_SIZE, y))
+                             (0, y), (self.GRID_WIDTH * self.CELL_SIZE, y))
 
     def _draw_score(self) -> None:
         """绘制分数"""
         # 分数区域背景
         score_area = pygame.Rect(0, self.GRID_HEIGHT * self.CELL_SIZE,
-                                self.screen_width, 60)
+                                 self.screen_width, 60)
         pygame.draw.rect(self.screen, (30, 45, 60), score_area)
         pygame.draw.line(self.screen, (60, 80, 100),
-                        (0, self.GRID_HEIGHT * self.CELL_SIZE),
-                        (self.screen_width, self.GRID_HEIGHT * self.CELL_SIZE), 2)
+                         (0, self.GRID_HEIGHT * self.CELL_SIZE),
+                         (self.screen_width, self.GRID_HEIGHT * self.CELL_SIZE), 2)
 
         # 分数文本
         score_text = f"得分: {self.score}"
@@ -311,8 +310,8 @@ class Game:
             self.screen.blit(score_surface, (20, self.GRID_HEIGHT * self.CELL_SIZE + 10))
             self.screen.blit(high_surface, (20, self.GRID_HEIGHT * self.CELL_SIZE + 35))
             self.screen.blit(controls_surface,
-                           (self.screen_width - controls_surface.get_width() - 20,
-                            self.GRID_HEIGHT * self.CELL_SIZE + 20))
+                             (self.screen_width - controls_surface.get_width() - 20,
+                              self.GRID_HEIGHT * self.CELL_SIZE + 20))
 
     def _draw_pause_screen(self) -> None:
         """绘制暂停画面"""
@@ -335,8 +334,8 @@ class Game:
 
             self.screen.blit(pause_surface, (pause_x, pause_y))
             self.screen.blit(hint_surface,
-                           ((self.screen_width - hint_surface.get_width()) // 2,
-                            pause_y + 60))
+                             ((self.screen_width - hint_surface.get_width()) // 2,
+                              pause_y + 60))
 
     def _draw_game_over_screen(self) -> None:
         """绘制游戏结束画面"""
@@ -363,13 +362,13 @@ class Game:
             start_y = self.screen_height // 2 - 100
 
             self.screen.blit(over_surface,
-                           (center_x - over_surface.get_width() // 2, start_y))
+                             (center_x - over_surface.get_width() // 2, start_y))
             self.screen.blit(score_surface,
-                           (center_x - score_surface.get_width() // 2, start_y + 70))
+                             (center_x - score_surface.get_width() // 2, start_y + 70))
             self.screen.blit(high_surface,
-                           (center_x - high_surface.get_width() // 2, start_y + 110))
+                             (center_x - high_surface.get_width() // 2, start_y + 110))
             self.screen.blit(restart_surface,
-                           (center_x - restart_surface.get_width() // 2, start_y + 170))
+                             (center_x - restart_surface.get_width() // 2, start_y + 170))
 
     def run(self) -> None:
         """运行游戏主循环"""

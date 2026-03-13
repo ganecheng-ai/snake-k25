@@ -1,7 +1,7 @@
 """
 贪吃蛇类定义
 """
-from typing import List, Tuple, Optional
+from typing import List, Tuple
 import pygame
 from enum import Enum
 

@@ -67,19 +67,18 @@ class Food:
         radius = (self.cell_size // 2 - 4) + pulse
 
         # 绘制外圈发光效果
-        glow_color = (255, 100, 100, 100)
         pygame.draw.circle(screen, (255, 150, 150),
-                          (center_x, center_y), int(radius + 3))
+                           (center_x, center_y), int(radius + 3))
 
         # 绘制食物主体
         pygame.draw.circle(screen, self.colors[0],
-                          (center_x, center_y), int(radius))
+                           (center_x, center_y), int(radius))
 
         # 绘制高光
         highlight_offset = radius // 3
         pygame.draw.circle(screen, (255, 200, 200),
-                          (int(center_x - highlight_offset), int(center_y - highlight_offset)),
-                          int(radius // 3))
+                           (int(center_x - highlight_offset), int(center_y - highlight_offset)),
+                           int(radius // 3))
 
     def get_position(self) -> Tuple[int, int]:
         """
