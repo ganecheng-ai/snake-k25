@@ -94,6 +94,10 @@ python main.py
 
 ## 版本历史
 
+### v1.0.1
+- 修复 GitHub Actions workflow 的 YAML 语法错误
+- 优化 CI/CD 构建流程
+
 ### v1.0.0
 - 首次发布
 - 基础贪吃蛇游戏功能
