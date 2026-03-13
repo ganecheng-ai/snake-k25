@@ -94,6 +94,10 @@ python main.py
 
 ## 版本历史
 
+### v1.0.4
+- 更新 softprops/action-gh-release 从 v1 到 v2
+- 修复 GitHub Actions Node.js 20 弃用警告
+
 ### v1.0.3
 - 统一数据文件保存位置，highscore.txt 现在与日志文件保存在同一根目录下
 - 代码质量优化：数据文件路径管理更加清晰
