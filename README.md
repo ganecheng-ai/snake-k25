@@ -94,6 +94,12 @@ python main.py
 
 ## 版本历史
 
+### v1.0.5
+- 代码质量优化：修复所有 flake8 警告
+- 移除未使用的变量和导入
+- 修复代码缩进对齐问题
+- 提升代码可读性和维护性
+
 ### v1.0.4
 - 更新 softprops/action-gh-release 从 v1 到 v2
 - 修复 GitHub Actions Node.js 20 弃用警告
