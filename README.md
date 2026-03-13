@@ -94,6 +94,10 @@ python main.py
 
 ## 版本历史
 
+### v1.0.3
+- 统一数据文件保存位置，highscore.txt 现在与日志文件保存在同一根目录下
+- 代码质量优化：数据文件路径管理更加清晰
+
 ### v1.0.2
 - 修复 GitHub Actions Node.js 20 弃用警告
 - 添加 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 环境变量配置
@@ -114,4 +118,8 @@ python main.py
 
 ## 日志文件
 
-游戏运行日志保存在 `snake_game/logs/` 目录下，文件名为 `snake_game_YYYYMMDD.log`。
+游戏运行日志保存在 `logs/` 目录下，文件名为 `snake_game_YYYYMMDD.log`。
+
+## 数据文件
+
+游戏数据（最高分记录）保存在 `snake_game_data/` 目录下。

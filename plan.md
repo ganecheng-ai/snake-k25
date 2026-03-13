@@ -70,8 +70,12 @@
 7. [x] 创建 GitHub Actions 工作流
 8. [x] 测试和优化
 9. [x] 发布 v1.0.0 版本
+10. [x] 发布 v1.0.1 版本（修复 workflow YAML 语法错误）
+11. [x] 发布 v1.0.2 版本（修复 Node.js 20 弃用警告）
+12. [x] 发布 v1.0.3 版本（优化数据文件保存路径）
 
 ## 版本规划
 - v1.0.0: 基础游戏功能完成，支持 Windows/Linux/macOS
 - v1.0.1: 修复 GitHub Actions workflow 的 YAML 语法错误
 - v1.0.2: 修复 Node.js 20 弃用警告，添加 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 环境变量
+- v1.0.3: 优化数据文件保存路径，统一 highscore.txt 与日志文件的保存位置

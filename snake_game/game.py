@@ -106,9 +106,15 @@ class Game:
             self.font_medium = pygame.font.SysFont("simhei", 32)
             self.font_small = pygame.font.SysFont("simhei", 24)
 
+    def _get_data_dir(self) -> str:
+        """获取数据文件保存目录（程序运行目录）"""
+        data_dir = os.path.join(os.getcwd(), "snake_game_data")
+        os.makedirs(data_dir, exist_ok=True)
+        return data_dir
+
     def _load_high_score(self) -> int:
         """加载最高分记录"""
-        score_file = os.path.join(os.path.dirname(__file__), "highscore.txt")
+        score_file = os.path.join(self._get_data_dir(), "highscore.txt")
         try:
             if os.path.exists(score_file):
                 with open(score_file, "r", encoding="utf-8") as f:
@@ -119,7 +125,7 @@ class Game:
 
     def _save_high_score(self) -> None:
         """保存最高分记录"""
-        score_file = os.path.join(os.path.dirname(__file__), "highscore.txt")
+        score_file = os.path.join(self._get_data_dir(), "highscore.txt")
         try:
             with open(score_file, "w", encoding="utf-8") as f:
                 f.write(str(self.high_score))
