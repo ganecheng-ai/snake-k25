@@ -8,6 +8,7 @@ from typing import Optional
 from .snake import Snake, Direction
 from .food import Food
 from .logger import setup_logger
+from .particle import ParticleSystem
 
 
 class Game:
@@ -62,6 +63,7 @@ class Game:
         self.high_score = self._load_high_score()
         self.game_over = False
         self.paused = False
+        self.particles = ParticleSystem()  # 粒子效果系统
 
         # 游戏速度控制
         self.move_delay = 100  # 毫秒
@@ -149,6 +151,7 @@ class Game:
         self.paused = False
         self.move_delay = self.base_speed
         self.last_move_time = pygame.time.get_ticks()
+        self.particles.clear()  # 清空粒子效果
 
     def handle_events(self) -> bool:
         """
@@ -230,6 +233,11 @@ class Game:
                 self.snake.grow(1)
                 self.score += 10
 
+                # 生成粒子效果（食物位置）
+                food_x = self.food.position[0] * self.CELL_SIZE + self.CELL_SIZE // 2
+                food_y = self.food.position[1] * self.CELL_SIZE + self.CELL_SIZE // 2
+                self.particles.spawn_explosion(food_x, food_y, (255, 100, 100), count=15)
+
                 # 更新最高分
                 if self.score > self.high_score:
                     self.high_score = self.score
@@ -238,11 +246,16 @@ class Game:
                 # 生成新食物
                 self.food.spawn(self.GRID_WIDTH, self.GRID_HEIGHT, self.snake.body)
 
-                # 加快速度
-                self.move_delay = max(40, self.base_speed - self.score // 2)
+                # 加快速度 - 使用更平滑的难度曲线
+                # 速度随长度增加，但增长曲线逐渐减缓
+                speed_increase = min(self.score // 3, 50)  # 最多减少50ms
+                self.move_delay = max(40, self.base_speed - speed_increase)
 
         # 更新食物动画
         self.food.update()
+
+        # 更新粒子效果
+        self.particles.update()
 
     def draw(self) -> None:
         """绘制游戏画面"""
@@ -263,6 +276,9 @@ class Game:
         # 绘制蛇
         if self.snake:
             self.snake.draw(self.screen, self.SNAKE_COLORS)
+
+        # 绘制粒子效果
+        self.particles.draw(self.screen)
 
         # 绘制分数
         self._draw_score()
